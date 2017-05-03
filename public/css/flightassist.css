@@ -111,8 +111,7 @@ img.ajax-loader {
     font-weight: bold;
 }
 
-.flightTime,
-.gateInfo {
+.flightTime, .gateInfo {
     color: #5d5d5d;
     font-weight: 400;
 }
@@ -160,9 +159,7 @@ img.ajax-loader {
     background: #3f3f3f;
 }
 
-.airportId,
-.airportFrom,
-.airportTo {
+.airportId, .airportFrom, .airportTo {
     font-weight: 500;
 }
 

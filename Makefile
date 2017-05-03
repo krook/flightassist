@@ -49,7 +49,7 @@ bxdeploy: bximage
 		$(BMIX_REGISTRY)/$(BMIX_NAMESPACE)/flightassist:latest
 
 # note that the compose yaml also expects the weather service image to be available as well
-# which is hosted in a separate project: github.com/estesp/flightassist-weather
+# which is hosted in a separate project: github.com/krook/flightassist-weather
 swarmdeploy: localimage swarmsecrets
 	docker stack deploy -c docker-compose.yaml flightassist
 

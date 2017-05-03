@@ -133,10 +133,10 @@ Because we already have a `manifest.yml` in the root of the project, you can get
 
 1. Clone the project: `git clone https://github.com/krook/flightassist`
 2. Edit `manifest.yml` and select your own application name and `host`. Since my application instance already owns the route `flightassist-oscon` on `mybluemix.net` you will have to select a unique name.
-3. Edit `flightassist.js` to set the `baseURL` variable (around line 16) to your selected CF route hostname.
-4. Either type `cf push` after making these edits or `make cfdeploy` to do the same action.
-5. Once your application is deployed, you need to make service bindings; go to the Bluemix console, open your application and use the UI to bind your two Bluemix services (Cloudant and Weather Data) to your application.
-6. Go to the _Runtime_ settings for your application and add these four environment variables to set up external credentials to the TripIt and FlightStats services:
+3. Edit `flightassist.js` to set the `baseURL` variable (around line 22) to your selected CF route hostname.
+4. Either type `cf push` after making these edits or `make cfdeploy` to do the same action. You app will not start until you've completed the next two steps, but for now it will get a URL and will show up in your dashboard.
+5. Once your application is deployed, you need to make service bindings; go to the Bluemix console, open your application and use the UI to bind your two Bluemix services (Cloudant and Weather Data) to your application (you can also add the service names in `manifest.yml`).
+6. Go to the _Runtime_ settings for your application and add these four environment variables to set up external credentials to the TripIt and FlightStats services (you can also add these in `manifest.yml`):
 
   - `FLIGHTSTATS_APP_ID`: application ID assigned by FlightStats
   - `FLIGHTSTATS_APP_KEY`: application key assigned by FlightStats

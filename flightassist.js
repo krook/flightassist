@@ -68,10 +68,10 @@ app.get("/authorize", function(req, res) {
 });
 
 var tripdata = require('./routes/tripdata.js'),
-  tripit = require('./tripit.js'),
-  flightstats = require('./flightstats.js'),
-  weather = require('./weather.js'),
-  conversation = require('./conversation.js');
+    tripit = require('./tripit.js'),
+    flightstats = require('./flightstats.js'),
+    weather = require('./weather.js'),
+    conversation = require('./conversation.js');
 
 app.get("/flights", function(req, res) {
   var respData = {};

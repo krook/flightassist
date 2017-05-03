@@ -81,17 +81,17 @@ app.get("/flights", function(req, res) {
     req.session.oauth_access_token_secret = results[1];
     var accessToken = results[0];
     var accessTokenSecret = results[1];
-    console.log("acquired OATH access tokens");
+    console.log("Acquired OAuth access tokens");
 
     // access TripIt trip data using our authenticated access information
-    console.log("Request profile data for the authenticated TripIt user..");
+    console.log("Request profile data for the authenticated TripIt user...");
     tripit.getProfileData(accessToken, accessTokenSecret).then(function(results) {
       var profile = JSON.parse(results[0]);
       respData.name = profile.Profile.screen_name;
       respData.company = profile.Profile.company;
       respData.photo = profile.Profile.photo_url;
       respData.home = profile.Profile.home_city;
-      console.log("Received profile info for " + respData.name + ". Rendering response..");
+      console.log("Received profile info for " + respData.name + ". Rendering response...");
       req.session.user = respData.name;
       // we have our static (older) view of travel details, or the
       // Watson powered "conversation" mode

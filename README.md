@@ -196,25 +196,23 @@ Concrete instructions for making a local deployment with **minikube** is coming 
 
 The _yaml_ files exist in the repository for creating a Kubernetes deployment with the weather microservice and the main application.
 
-1. Follow the create kubernetes cluster tutorial to create the kubernetes cluster in IBM Container service [<https://console.ng.bluemix.net/docs/containers/cs_tutorials.html#cs_tutorials>].
+1. Follow the create Kubernetes cluster tutorial to create the Kubernetes cluster in IBM Container service [<https://console.ng.bluemix.net/docs/containers/cs_tutorials.html#cs_tutorials>].
 
-2. Create the cloudant and weather insight service if you don't have them deployed yet:
+2. Create the Cloudant and Weather Insight service if you don't have them deployed yet:
 
   - `bx service create cloudantNoSQLDB Lite mycloudant`
   - `bx service create weatherinsights Free-v2 myweatherinsights`
 
-3. Bind the two services to the kubernete cluster deployed earlier:
+3. Bind the two services to the Kubernetes cluster deployed earlier:
 
   - `bx cs cluster-service-bind {your-cluster-name} default mycloudant`
   - `bx cs cluster-service-bind {your-cluster-name} default myweatherinsights`
 
-  The examples above use the default kubernetes namespace and you could choose a different namespace.
+  The examples above use the default Kubernetes namespace and you could choose a different namespace.
 
-4. Modify the secret.yaml file with flightstats-app-id, flightstats-app-key, tripit-api-key, and tripit-api-secret.
+4. Copy the tpl-secret.yaml to secret.yaml and modify the file with flightstats-app-id, flightstats-app-key, tripit-api-key, and tripit-api-secret values.
 
-5. Edit the flightassist.yaml and replace the `<namespace>` with your own namespace. Also replace
-
-  <your-app-end-point-url> with the endpoint of the application.  If you are using the free cluster provided by IBM Container service, this is your node ip and nodeport, e.g. 169.47.237.139:30080</your-app-end-point-url>
+5. Copy the tpl-flightassist.yaml to flightassist.yaml and replace the `<namespace>` with your own namespace. Also replace `<your-app-end-point-url>` with the endpoint of the application.  If you are using the free cluster provided by IBM Container service, this is your node ip and nodeport, e.g. `169.47.237.139:30080</your-app-end-point-url>`
 
 6. Deploy the secret and deployment:
 
@@ -230,5 +228,5 @@ Use any of the above guides with the following changes to use the existing OpenW
 1. Edit your `.env` and unset the `USE_WEATHER_SERVICE=true` if it was set (or set it to `false`)
 2. Uncomment the `export USE_WEATHER_SERVERLESS=true` (or add it if you don't have this variable copied in from the `dot-env` template)
 3. Login to the IBM Bluemix console and set up the [OpenWhisk client](https://console.ng.bluemix.net/openwhisk/cli), making sure to run the setup command to set the host and authentication parameters.
-4. Run `wsk property get --auth | awk '{print $3}'` to get the authentication string from OpenWhisk and set a new variable in `.env`: `export OPENWHISK_AUTH=<auth-string` with the data you got back from the `get --auth` command.
+4. Run `wsk property get --auth | awk '{print $3}'` to get the authentication string from OpenWhisk and set a new variable in `.env`: `export OPENWHISK_AUTH=<auth-string>` with the data you got back from the `get --auth` command.
 5. Run your deployment of **flightassist** and verify in your logs that the OpenWhisk action is being utilized to query the weather data for each airport.
